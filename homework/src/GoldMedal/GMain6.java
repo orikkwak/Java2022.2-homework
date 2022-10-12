@@ -1,21 +1,25 @@
 package GoldMedal;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class GMain6 {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+//		Scanner sc = new Scanner(System.in);
 	    Set<Integer>K=new TreeSet<>();
 		Set<Integer> M = new TreeSet<>();
 		Set<Integer> B = new TreeSet<>();
 		int kk = 10000000;
 		int mm = 10000000;
 		int bb = 10000000;
-		int n = sc.nextInt();
-		for (int j = 0; j < n; j++){
-			int i = sc.nextInt();
-			String a = sc.next();
-			int k = Integer.parseInt(a.substring(0, a.length() - 2));
+		StringTokenizer n = new StringTokenizer(sc.readLine());
+		int c = Integer.parseInt(n.nextToken());
+		for (int j = 0; j < c ; j++){
+			int i = Integer.parseInt(n.nextToken());
+			StringTokenizer a = new StringTokenizer(sc.readLine());
+			int k = Integer.parseInt(null, a.countTokens() - 2);
 			if(kk > k){
 				kk = k;
 				K.clear();
@@ -24,8 +28,8 @@ public class GMain6 {
 			else if (kk == k){
 				K.add(i);
 				}
-			a = sc.next();
-			int m = Integer.parseInt(a.substring(0, a.length() - 2));
+			a = new StringTokenizer(sc.readLine());
+			int m = Integer.parseInt(null, a.countTokens() - 2);
 			if (mm > m){
 				mm = m;
 				M.clear();
@@ -34,8 +38,8 @@ public class GMain6 {
 				M.add(i);
 				}
 			int b = sc.nextInt();
-			sc.next();if (bb > b) {
-				bb = b;
+			sc.next();
+			if (bb > b) {bb = b;
 			    B.clear();
 				B.add(i);
 			}else if (bb == b){
