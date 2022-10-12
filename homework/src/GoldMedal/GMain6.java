@@ -10,21 +10,23 @@ import java.util.*;
 public class GMain6 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
-//		Scanner sc = new Scanner(System.in);
 	    Set<Integer>K=new TreeSet<>();
 		Set<Integer> M = new TreeSet<>();
 		Set<Integer> B = new TreeSet<>();
 		int kk = 10000000;
 		int mm = 10000000;
 		int bb = 10000000;
+		StringTokenizer a;
 		StringTokenizer n = new StringTokenizer(sc.readLine());
 		int c = Integer.parseInt(n.nextToken());
+		
 		for (int j = 0; j < c ; j++){
+			a = new StringTokenizer(n.nextToken());
+			a.nextToken();
+			int i = Integer.parseInt(a.nextToken());
 			
-			StringTokenizer ix = n;
-			int i = Integer.parseInt(ix.nextToken());
-			StringTokenizer a = new StringTokenizer(sc.readLine());
-			int k = Integer.parseInt(null, a.countTokens() - 2);
+			a = new StringTokenizer(sc.readLine());
+			int k = Integer.parseInt(a.nextToken());
 			if(kk > k){
 				kk = k;
 				K.clear();
@@ -33,6 +35,7 @@ public class GMain6 {
 			else if (kk == k){
 				K.add(i);
 				}
+			
 			a = new StringTokenizer(sc.readLine());
 			int m = Integer.parseInt(null, a.countTokens() - 2);
 			if (mm > m){
@@ -65,4 +68,9 @@ public class GMain6 {
 		for (int x : B)
 			w.write(x + " ");
 		w.write("\n");
-		}}
+		}
+
+	private static Object skipDelimiters(Object currentPosition) {
+		// TODO Auto-generated method stub
+		return null;
+	}}

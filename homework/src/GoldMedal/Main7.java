@@ -17,6 +17,7 @@ public class Main7 {
 		int n = Integer.parseInt(br.readLine());
 		StringTokenizer st;
 		for (int i = 0; i < n; i++) {
+			
 			st = new StringTokenizer(br.readLine());
 			st.nextToken();
 			int count = Integer.parseInt(st.nextToken());
