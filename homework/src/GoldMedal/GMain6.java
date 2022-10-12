@@ -1,8 +1,10 @@
 package GoldMedal;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.*;
 
 public class GMain6 {
@@ -18,7 +20,9 @@ public class GMain6 {
 		StringTokenizer n = new StringTokenizer(sc.readLine());
 		int c = Integer.parseInt(n.nextToken());
 		for (int j = 0; j < c ; j++){
-			int i = Integer.parseInt(n.nextToken());
+			
+			StringTokenizer ix = n;
+			int i = Integer.parseInt(ix.nextToken());
 			StringTokenizer a = new StringTokenizer(sc.readLine());
 			int k = Integer.parseInt(null, a.countTokens() - 2);
 			if(kk > k){
@@ -47,16 +51,18 @@ public class GMain6 {
 				B.add(i);
 				}}
 		sc.close();
-		System.out.println(kk + "KB");
+		
+		BufferedWriter w = new BufferedWriter(new OutputStreamWriter(System.out));
+		w.write(kk + "KB");
 		for (int x : K)
-			System.out.print(x + " ");
-		System.out.println();
-		System.out.println(mm + "ms");
+			w.write(x + " ");
+		w.write("\n");
+		w.write(mm + "ms");
 		for (int x : M)
-			System.out.print(x + " ");
-		System.out.println();
-		System.out.println(bb + " bytes");
+			w.write(x + " ");
+		w.write("\n");
+		w.write(bb + " bytes");
 		for (int x : B)
-			System.out.print(x + " ");
-		System.out.println();
+			w.write(x + " ");
+		w.write("\n");
 		}}
