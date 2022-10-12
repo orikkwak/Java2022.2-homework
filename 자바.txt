@@ -1,0 +1,181 @@
+package pgs;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class exam extends JFrame {
+
+	int pork = 0;
+	int stew = 0;
+	int d_hote = 0;
+
+	int money = 0;
+
+	JTextArea area;
+	JTextField t2;
+
+	exam() {
+		setTitle("메뉴");
+
+		setLayout(new BorderLayout());
+		showNorth();
+		showCenter();
+		showSouth();
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(300, 300);
+		setVisible(true);
+	}
+
+	void showNorth() {
+
+		JPanel panel = new JPanel();
+		area = new JTextArea(4, 25);
+
+		area.setText("돈가스 " + pork + "개\n김치찌개 " + stew + "개\n정식 " + d_hote + "개");
+		area.setEditable(false);
+
+		panel.add(area);
+
+		add(panel, BorderLayout.NORTH);
+	}
+
+	void showCenter() {
+
+		String[] menu = { "돈가스", "김치찌개", "정식" };
+
+		JPanel panel = new JPanel(new GridLayout(3, 0));
+
+		JPanel l1 = new JPanel();
+		JPanel l2 = new JPanel();
+		JPanel l3 = new JPanel();
+
+		JComboBox<String> cb = new JComboBox<>(menu);
+		cb.setPreferredSize(new Dimension(70, 30));
+		JTextField count = new JTextField(7);
+		count.setText("0개");
+		count.setHorizontalAlignment(JLabel.CENTER);
+		JButton b1 = new JButton("<");
+		JButton b2 = new JButton(">");
+
+		JLabel j1 = new JLabel("총 액");
+		j1.setHorizontalAlignment(JLabel.CENTER);
+		j1.setPreferredSize(new Dimension(70, 30));
+		JLabel j2 = new JLabel("투입금액");
+		j2.setHorizontalAlignment(JLabel.CENTER);
+		j2.setPreferredSize(new Dimension(70, 30));
+
+		JTextField t1 = new JTextField("0");
+		t1.setHorizontalAlignment(JTextField.RIGHT);
+		t1.setPreferredSize(new Dimension(150, 30));
+		t2 = new JTextField();
+		t2.setHorizontalAlignment(JTextField.RIGHT);
+		t2.setPreferredSize(new Dimension(150, 30));
+		t1.setEditable(false);
+		t1.setBackground(Color.white);
+
+		l1.add(cb);
+		l1.add(b1);
+		l1.add(count);
+		l1.add(b2);
+		l2.add(j1);
+		l2.add(t1);
+		l3.add(j2);
+		l3.add(t2);
+		panel.add(l1);
+		panel.add(l2);
+		panel.add(l3);
+		add(panel, BorderLayout.CENTER);
+
+		cb.addItemListener(e -> {
+			int index = ((JComboBox) cb).getSelectedIndex();
+			if (index == 0)
+				count.setText(pork + "개");
+			else if (index == 1)
+				count.setText(stew + "개");
+			else
+				count.setText(d_hote + "개");
+
+		});
+
+		ActionListener listener1 = e -> {
+			int index = ((JComboBox) cb).getSelectedIndex();
+			if (index == 0) {
+				pork -= 1;
+				count.setText(pork + "개");
+			} else if (index == 1) {
+				stew -= 1;
+				count.setText(stew + "개");
+			} else {
+				d_hote -= 1;
+				count.setText(d_hote + "개");
+			}
+			area.setText("돈가스 " + pork + "개\n김치찌개 " + stew + "개\n정식 " + d_hote + "개");
+			totalMoney();
+			t1.setText(money + "");
+		};
+
+		ActionListener listener2 = e -> {
+			int index = ((JComboBox) cb).getSelectedIndex();
+			if (index == 0) {
+				pork += 1;
+				count.setText(pork + "개");
+			} else if (index == 1) {
+				stew += 1;
+				count.setText(stew + "개");
+			} else {
+				d_hote += 1;
+				count.setText(d_hote + "개");
+			}
+			area.setText("돈가스 " + pork + "개\n김치찌개 " + stew + "개\n정식 " + d_hote + "개");
+			totalMoney();
+			t1.setText(money + "");
+		};
+
+		b1.addActionListener(listener1);
+		b2.addActionListener(listener2);
+	}
+
+	int totalMoney() {
+		money = pork * 3000 + stew * 2000 + d_hote * 2500;
+
+		return money;
+	}
+
+	void showSouth() {
+		JPanel panel = new JPanel();
+
+		JButton button = new JButton("결 제");
+		button.setPreferredSize(new Dimension(250, 40));
+
+		panel.add(button);
+		add(panel, BorderLayout.SOUTH);
+
+		ActionListener listener3 = e -> {
+			if (t2.getText().isEmpty())
+				area.setText("돈가스 " + pork + "개\n김치찌개 " + stew + "개\n정식 " + d_hote + "개\n금액을 입력하세요.");
+			else if (Integer.parseInt(t2.getText()) < money) {
+				area.setText("돈가스 " + pork + "개\n김치찌개 " + stew + "개\n정식 " + d_hote + "개\n금액이 부족합니다.");
+			} else {
+				area.setText("돈가스 " + pork + "개\n김치찌개 " + stew + "개\n정식 " + d_hote + "개\n주문이 완료되었습니다.");
+			}
+		};
+
+		button.addActionListener(listener3);
+	}
+
+	public static void main(String args[]) {
+		new exam();
+	}
+}
