@@ -1,11 +1,12 @@
 package GoldMedal;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
 public class GMain6 {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
 //		Scanner sc = new Scanner(System.in);
 	    Set<Integer>K=new TreeSet<>();
@@ -37,8 +38,8 @@ public class GMain6 {
 			}else if (mm == m){
 				M.add(i);
 				}
-			int b = sc.nextInt();
-			sc.next();
+			int b = Integer.parseInt(n.nextToken());
+			n.nextToken();
 			if (bb > b) {bb = b;
 			    B.clear();
 				B.add(i);
